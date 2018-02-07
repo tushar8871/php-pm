@@ -1,14 +1,14 @@
-This is a fork from https://github.com/php-pm/php-pm to demonstrate the usage of [SonarQube](https://www.sonarqube.org/) in the context of a PHP project.
+This is a fork from https://github.com/php-pm/php-pm modified to demonstrate the usage of [SonarQube](https://www.sonarqube.org/) in the context of a PHP project.
 
 # Change Log
 
-Changes compared to the original project:
+Modifications compared to the original project:
 
 1. `sonar-project.properties` was added, which is the configuration file for Sonar scanner, the command line tool performing the static code analysis
 2. `phpunit.xml.dist` was modified to produce log files that can be picked ob by the Sonar scanner to report test coverage metrics
 3. `Vagrantfile` was added to have a clean test environment
 
-# Steps to do before you run Sonar scanner
+# Before Running Sonar Scanner
 
 1. Launch the vagrant box with `vagrant up`
 2. Log into the box `vagrant ssh`
@@ -19,7 +19,9 @@ Changes compared to the original project:
 
 As a result, you should get the files `clover.xml` and `junit-logfile.xml` in your project root.
 
-Next, exit the Vagrant box and run the Docker container with the Sonar scanner
+# Running Sonar Scanner
+
+Exit the Vagrant box and run the Docker container with the Sonar scanner.
 
     export DOCKERWORKDIR='/vagrant';
     docker run --rm \
