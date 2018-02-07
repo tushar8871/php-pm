@@ -31,6 +31,10 @@ script:
   - curl -v -f "http://127.0.0.1:8080"
   - bin/ppm status
   - bin/ppm stop
+  # Unit test
+  - export DOCKERWORKDIR="$(pwd)"
+  - echo $DOCKERWORKDIR
+  - docker run --rm --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR -w=$DOCKERWORKDIR --network=sonar sonar-scanner:latest sonar-scanner
 
 matrix:
   fast_finish: true
