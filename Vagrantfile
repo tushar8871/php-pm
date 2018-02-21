@@ -13,4 +13,6 @@ Vagrant.configure("2") do |config|
     php.vm.box_version = "0.2.1"
     php.vm.hostname = 'php'
   end
+
+  config.vm.synced_folder ".", "/project-root"
 end

@@ -15,7 +15,7 @@ To manually perform an analysis, you can do the following:
 
 1. Launch the vagrant box with `vagrant up`
 2. Log into the box `vagrant ssh`
-3. Go to `/vagrant`
+3. Go to `/project-root`
 4. Run `composer install`
 5. Install Xdebug [following these instructions](https://kevdees.com/installing-xdebug-for-php7/)
 6. Run PHPunit `./vendor/bin/phpunit --verbose -c phpunit.xml.dist`
@@ -23,13 +23,13 @@ To manually perform an analysis, you can do the following:
 As a result, you should get the files `clover.xml` and `junit-logfile.xml` in your project root. Note that the Vagrant box is only necessary for testing.
 Next, exit the Vagrant box and run the Docker container with the Sonar scanner.
 
-    export DOCKERWORKDIR='/vagrant';
+    export DOCKERWORKDIR='/project-root';
     docker run --rm \
         --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR \
         -w=$DOCKERWORKDIR --network=sonar \
         sonar-scanner:latest sonar-scanner
 
-Note: setting `DOCKERWORKDIR` to `/vagrant` is important because this is the base directory in which PHPUnit was executed, i.e. file references in `clover.xml` use this as the base directory.
+Note: setting `DOCKERWORKDIR` to `/project-root` is important because this is the base directory in which PHPUnit was executed, i.e. file references in `clover.xml` use this as the base directory.
 
 # Integration into CI Pipeline
 
